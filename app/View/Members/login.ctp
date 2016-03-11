@@ -1,4 +1,10 @@
-<?= $this->Form->create('Members'); ?>
-<?= $this->Form->input('username'); ?>
-<?= $this->Form->input('password'); ?>
-<?= $this->Form->end('Se connecter'); ?>
+<?php 
+
+echo $this->Form->Create('Member');
+
+echo $this->Form->input('username');
+echo $this->Form->input('password');
+
+echo $this->Form->end('CoucouToi');
+
+?>

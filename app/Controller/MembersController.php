@@ -1,20 +1,22 @@
 <?php
-
-App::uses('AppController', 'Controller');
-
 class MembersController extends AppController {
 
-	public function login(){
-		if(!empty($this->request->data)){
-			echo $this->Auth->password('admin');
-			if($this->Auth->login()){
-				die('logged');				
+	public function login() {
+
+		if($this->request->is('post')){
+			pr($this->request->data['Member']['password']);
+			// try to log
+			if ($this->Auth->login()) {
+				pr('Connected');
+			}else{
+				pr('Bais&eacute;');
 			}
 		}
+
 	}
 
 	public function logout(){
-
+		$this->redirect($this->Auth->logout());
 	}
 
 }

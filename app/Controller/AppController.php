@@ -31,23 +31,24 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-
-    public $components = array(
-    	'Auth' => array(
-    		'loginAction' => array(
+	
+	public $components = array(
+	    'Auth' => array(
+	        'loginAction' => array(
 	            'controller' => 'members',
 	            'action' => 'login'
 	        ),
+	        'authError' => 'Pensiez-vous réellement que vous étiez autorisés à voir cela ?',
 	        'authenticate' => array(
 	            'Form' => array(
-	                'fields' => array('username' => 'email')
+	                'fields' => array(
+	                    'username' => 'username', // 'username' par défaut
+	                    'password' => 'password'  // 'password' par défaut
+	                ),
+	                'userModel' => 'Member'
 	            )
 	        )
 	    )
-    );
-
-    public function beforeFilter()
-    {
-        parent::beforeFilter();
-    }
+	);	
+	
 }

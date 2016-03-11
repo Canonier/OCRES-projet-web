@@ -4,12 +4,13 @@ class MembersController extends AppController {
 	public function login() {
 
 		if($this->request->is('post')){
-			pr($this->request->data['Member']['password']);
 			// try to log
 			if ($this->Auth->login()) {
-				pr('Connected');
+				return $this->redirect($this->Auth->redirectUrl());
 			}else{
-				pr('Bais&eacute;');
+				$this->Flash->error(
+		        	__('Log incorrect')
+			    );
 			}
 		}
 
@@ -17,6 +18,17 @@ class MembersController extends AppController {
 
 	public function logout(){
 		$this->redirect($this->Auth->logout());
+	}
+
+
+	public function index(){
+		$members = $this->Member->find('all');
+		$this->set(compact('members'));
+		$this->set('username', $this->Auth->user('username'));
+	}
+
+	public function profil($id){
+
 	}
 
 }

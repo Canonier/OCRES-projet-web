@@ -48,7 +48,8 @@ class AppController extends Controller {
 	                'userModel' => 'Member'
 	            )
 	        )
-	    )
+	    ),
+	    'Flash'
 	);	
 	
 }

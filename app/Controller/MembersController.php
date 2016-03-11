@@ -36,12 +36,15 @@ class MembersController extends AppController {
 		$friendsId = $this->Bond->findFriends($userId, 1);
 		$friends = $this->Member->findFriendsData($friendsId);
 		// all users
-		$members = $this->Member->find('all');
-		// $members = array_diff($this->Member->find('all'), array_merge($friends, $awaitings, $requests));
-		// pr($this->Member->find('all'));
-		// pr(array_merge($friends, $awaitings, $requests));
+		 $members = $this->Member->findMembers(array_merge($friendsId, $requestsId, $awaitingsId));
 		// Send data to the view
 		$this->set(compact('requests', 'friends', 'userId', 'awaitings', 'members'));
+
+		// Flash Info
+		if(empty($requests) && empty($awaitings) && empty($friends)){
+			$this->Flash->error(__('No friend yet! :\'('));
+		}
+
 	}
 
 	public function profil($id){

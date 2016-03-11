@@ -42,7 +42,7 @@ class AppController extends Controller {
 	        'authenticate' => array(
 	            'Form' => array(
 	                'fields' => array(
-	                    'username' => 'username', // 'username' par défaut
+	                    'username' => 'email', // 'username' par défaut
 	                    'password' => 'password'  // 'password' par défaut
 	                ),
 	                'userModel' => 'Member'

@@ -65,3 +65,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 </body>
 <?= $this->element('footer'); ?>
 </html>
+
+<script>
+
+$(document).ready( function () {
+    $('#datatable').DataTable();
+} );
+
+</script>

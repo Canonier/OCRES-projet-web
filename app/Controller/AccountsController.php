@@ -17,7 +17,7 @@ class AccountsController extends AppController
      */
     
     public $components = array('Session');
-    public $uses = array('Member', 'Workout', 'Device', 'Log'); 
+    public $uses = array('Member', 'Workout', 'Device', 'Log', 'Bond');
 
 
 // Index
@@ -194,6 +194,19 @@ class AccountsController extends AppController
     {
         $members = $this->Member->find('all', array('fields' => array('id', 'email')));
         $this->set(compact('members'));
+
+        $workouts = $this->Workout->find('all', array('fields' => array('id', 'date', 'end_date', 'location_name',
+            'description', 'sport')));
+        $this->set(compact("workouts"));
+
+        $bonds = $this->Bond->find('all');
+        $this->set(compact('bonds'));
+
+        $devices = $this->Device->find('all');
+        $this->set(compact('devices'));
+
+
+
 
     }
 }

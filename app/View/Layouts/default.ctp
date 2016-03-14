@@ -26,14 +26,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
+        echo $this->Html->css('database.plugin');
 		echo $this->Html->css('cake.generic');
-		echo $this->Html->css('sites');
  
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+
 	?>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/t/bs-3.3.6/jq-2.2.0,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.11,b-1.1.2,b-colvis-1.1.2,b-flash-1.1.2,b-print-1.1.2,cr-1.3.1,r-2.0.2,sc-1.4.1,se-1.1.2/datatables.min.js"></script>
 </head>
 <?= $this->element('header'); ?>
 <body>

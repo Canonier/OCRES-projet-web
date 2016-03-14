@@ -190,6 +190,12 @@ class AccountsController extends AppController
         $this->Session->setFlash('Une action a été réalisée.');
     }
 
+    public function showTable()
+    {
+        $members = $this->Member->find('all', array('fields' => array('id', 'email')));
+        $this->set(compact('members'));
+
+    }
 }
 
 ?>

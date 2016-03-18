@@ -41,7 +41,7 @@ echo $this->Html->link('CNIL', '/cnil').' ';
 echo $this->Html->link('FAQ', '/faq').' '; 
 
 if(!$authUser){ // If unconnected
-	echo $this->Html->link('Log in', '/members/login').' '; 
+	echo $this->Html->link('Sign in/up', '/members/login').' '; 
 }else{ 
 	echo $this->Html->link('Log Out', '/members/logout').' '; 	
 }

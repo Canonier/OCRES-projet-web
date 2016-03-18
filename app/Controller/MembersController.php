@@ -3,6 +3,11 @@ class MembersController extends AppController {
 
 	public $uses = array('Member', 'Bond');
 
+	function beforeFilter(){
+		parent::beforeFilter();
+		$this->Auth->allow('create');
+	}
+
 	public function login() {
 
 		if($this->request->is('post')){
@@ -21,6 +26,39 @@ class MembersController extends AppController {
 	public function logout(){
 		$this->Auth->logout();
 		$this->redirect('/');
+	}
+
+	public function create(){
+		if($this->request->is('post')){
+			$data = $this->request->data['CreateMember'];
+			// Check if email already exists
+			if(!in_array($data['email'], $this->Member->getEmails())){
+				// Check if Passwords are identical
+				if($data['pass1'] == $data['pass2']){
+					$newMember = array(
+						'email' => $data['email'],
+						'password' => $this->Auth->password($data['pass1']),
+						);
+					if($this->Member->save($newMember)){
+						$this->Flash->success(__(
+							'Votre compte à bien été créé! Vous pouvez dès à présent vous y connecter.'
+							));
+					}else{
+						$this->Flash->error(__('Une erreur est survenue, merci de réitérer ultérieurement. Si le problème est persistant, merci de contacter le webmaster à admin@ocres.fr.'));
+					}
+				}else{
+					$this->Flash->error(__('Vos passwords semblent ne pas correspondrent.'));
+				}
+			}else{
+				$this->Flash->error(__(
+					'Cet email est déjà utilisé.'
+					));
+			}
+		}
+	}
+
+	public function pswlost(){
+		
 	}
 
 

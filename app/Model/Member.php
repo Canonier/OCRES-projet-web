@@ -35,6 +35,15 @@ class Member extends AppModel {
 		return $members;
 	}
 
+	public function getEmails(){
+		$emails = $this->find('all', array('fields' => array('email')));
+		$emailsList = array();
+		foreach ($emails as $email) {
+			$emailsList[] = $email['Member']['email'];
+		}
+		return $emailsList;
+	}
+
 }
 
 ?>

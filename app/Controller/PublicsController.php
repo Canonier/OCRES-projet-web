@@ -17,4 +17,10 @@ class PublicsController extends AppController{
 		$this->set(compact('members'));
 	}
 
+	function contact(){
+		if($this->request->is('post')){
+		pr($this->request->data);
+		}
+	}
+
 }

@@ -51,5 +51,10 @@ class AppController extends Controller {
 	    ),
 	    'Flash'
 	);	
+
+	function beforeFilter(){
+		// parent:beforeFilter();
+		$this->set('authUser', $this->Auth->user());
+	}
 	
 }

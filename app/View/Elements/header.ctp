@@ -28,17 +28,22 @@
 echo $this->Html->link('Home', '/').' ';
 echo $this->Html->link('Ranking', '/ranking').' ';
 
-if(!$authUser){ // If unconnected
-	echo $this->Html->link('Log in', '/members/login').' '; 
-}else{ // If connected
+if($authUser){
+	// If connected
 	echo $this->Html->link('My Profil', array('controller' => 'Accounts', 'action' => 'myprofile')).' '; 
 	echo $this->Html->link('My Workouts', array('controller' => 'Accounts', 'action' => 'myworkouts')).' '; 
-	echo $this->Html->link('My Devices', array('controller' => 'Accounts', 'action' => 'mydevices')).' '; 
-	echo $this->Html->link('Contact', '/contact').' '; 	
-	echo $this->Html->link('Team', '/team').' '; 	
-	echo $this->Html->link('CNIL', '/cnil').' '; 	
-	echo $this->Html->link('FAQ', '/faq').' '; 	
-	echo $this->Html->link('Log Out', '/members/logout').' '; 		
+	echo $this->Html->link('My Devices', array('controller' => 'Accounts', 'action' => 'mydevices')).' '; 		
+}
+
+echo $this->Html->link('Contact', '/contact').' '; 	
+echo $this->Html->link('Team', '/team').' '; 	
+echo $this->Html->link('CNIL', '/cnil').' '; 	
+echo $this->Html->link('FAQ', '/faq').' '; 
+
+if(!$authUser){ // If unconnected
+	echo $this->Html->link('Log in', '/members/login').' '; 
+}else{ 
+	echo $this->Html->link('Log Out', '/members/logout').' '; 	
 }
 
 ?> 

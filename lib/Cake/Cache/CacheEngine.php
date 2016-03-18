@@ -14,6 +14,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+date_default_timezone_set('Europe/Paris');
 /**
  * Storage engine for CakePHP caching
  *

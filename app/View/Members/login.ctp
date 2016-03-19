@@ -4,21 +4,21 @@
 
 echo $this->Html->link(
     'S\'inscrire',
-    '/members/create',
-    array('class' => 'button')
+    '/members/create'
 );
 
+echo ' ou ';
+
 echo $this->Html->link(
-    'Identifiant Perdu ?',
-    '/members/pswlost',
-    array('class' => 'button')
+    'mot de passe erdu ?',
+    '/members/pswlost'
 );
 
 
 echo $this->Form->Create('Member');
 
-echo $this->Form->input('email');
-echo $this->Form->input('password');
+echo $this->Form->input('email', array('required'));
+echo $this->Form->input('password', array('required'));
 
 echo $this->Form->end('Se connecter');
 

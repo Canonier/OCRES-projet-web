@@ -1,11 +1,14 @@
 <?php
+
+App::uses('CakeEmail', 'Network/Email');
+
 class MembersController extends AppController {
 
 	public $uses = array('Member', 'Bond');
 
 	function beforeFilter(){
 		parent::beforeFilter();
-		$this->Auth->allow('create');
+		$this->Auth->allow('create', 'pswlost');
 	}
 
 	public function login() {
@@ -13,7 +16,7 @@ class MembersController extends AppController {
 		if($this->request->is('post')){
 			// try to log
 			if ($this->Auth->login()) {
-				return $this->redirect($this->Auth->redirectUrl());
+				return $this->redirect('/');
 			}else{
 				$this->Flash->error(
 		        	__('Log incorrect')
@@ -43,22 +46,43 @@ class MembersController extends AppController {
 						$this->Flash->success(__(
 							'Votre compte à bien été créé! Vous pouvez dès à présent vous y connecter.'
 							));
+						$this->request->data = null;
 					}else{
 						$this->Flash->error(__('Une erreur est survenue, merci de réitérer ultérieurement. Si le problème est persistant, merci de contacter le webmaster à admin@ocres.fr.'));
+						$this->request->data['CreateMember'] = array('email' => $data['email']);				
 					}
 				}else{
-					$this->Flash->error(__('Vos passwords semblent ne pas correspondrent.'));
+					$this->Flash->error(__('Vos passwords semblent ne pas correspondre.'));
+					$this->request->data['CreateMember'] = array('email' => $data['email']);
 				}
 			}else{
 				$this->Flash->error(__(
 					'Cet email est déjà utilisé.'
 					));
+				$this->request->data = null;
 			}
 		}
 	}
 
 	public function pswlost(){
-		
+		if($this->request->is('post')){
+			// check if email exist
+			$user = $this->Member->findByEmail($this->request->data['Member']['email']);
+			if(!empty($user)){
+				$to = $user['Member']['email'];
+				// send email
+				$email = new CakeEmail();
+				$email->from(array('no-reply@ocres.fr' => 'OCRES Projet Web'));
+				$email->to($to);
+				$email->subject('Reset your password');
+				$email->send('You can now reset your password ');
+				// success
+				$this->Flash->success(__('Un email de confirmation vient de vous etre envoyé.'));
+				$this->request->data = null;
+			}else{
+				$this->Flash->error(__('Cet email nous est inconnu.'));
+			}
+		}
 	}
 
 

@@ -34,7 +34,67 @@ class AccountsController extends AppController
 
     public function myprofile()
     {
-        $this->set('raw', $this->Member->findById($this->Auth->user('id')));
+        $raw = $this->Member->findById($this->Auth->user('id'));
+        $this->set(compact('raw'));
+        if($this->request->is('post')){
+            // if we change the password
+            if(!empty($this->request->data['Password'])){
+                $data = $this->request->data['Password'];
+                // Check if password is correct
+                $old = $this->Auth->password($data['old']);
+                if($old == $raw['Member']['password']){
+                    // check if new passwords are identical
+                    if($data['new'] == $data['verify']){
+                        $new = $this->Auth->password($data['new']);
+                        $raw['Member']['password'] = $new;
+                        if($this->Member->save($raw)){
+                            $this->request->data = null;
+                            $this->Flash->success(__('Mot de passe correctement mis à jour!'));
+                        }else{
+                            $this->request->data = null;
+                            $this->Flash->error(__('Une erreur est survenue, merci de réitérer l\'action.'));
+                        }
+                    }else{
+                        $this->request->data = null;
+                    $this->Flash->error(__('Vos nouveaux mots de passe ne correspondent pas.'));
+                    }
+                }else{
+                    $this->request->data = null;
+                    $this->Flash->error(__('Votre ancien mot de passe ne correspond pas.'));
+                }
+
+            }
+
+            // if we change the avatar
+            else if(!empty($this->request->data['Avatar'])){
+                $data = $this->request->data['Avatar']['Upload'];
+                if(!empty($data['name']) && $data['error'] == 0){ // if upload are correct
+                    // Check the extension
+                    if($data['type'] != 'image/jpeg' && $data['type'] != 'image/png' ){
+                        $this->Flash->error(__('Extension de type '.$data['type'].' non tolérées.'));
+                    }else{ // if ext is correct.
+                        // move it && force .png extension
+                        $moveTo = WWW_ROOT.'img'.DS.$this->Auth->user('id').'.png';
+                        move_uploaded_file($data['tmp_name'], $moveTo);
+                        if( (time() - filemtime($moveTo)) < 5 ){ // Si l'image est plus jeune que 5secondes
+                            $this->Flash->success(__('Avatar mis à jour!'));
+                        }else{
+                            $this->Flash->error(__('Un problème est survenu. Merci de contacter le webmaster à webmaster@ocres.fr, en joignant le fichier que vous vouliez uploader.'));
+                        }
+                    }
+                }else{
+                    $error = array(
+                        'Votre image est trop lourde.',
+                        'Votre image est trop lourde.',
+                        'L\'image ne s\'est uploadée que partiellement, merci de réessayer.',
+                        'Votre fichier semble corrompu, merci d\'en choisir un autre'
+                        );
+                    $this->Flash->error(__('Un problème est survenu. '.$error[$data['error']]));
+                }
+            }else{
+                $this->Flash->error(__('Un problème est survenu. Assurez-vous d\'avoir correctement rempli les champs nécessaires.'));
+            }
+        }
     }
 
     public function addmember()

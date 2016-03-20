@@ -5,7 +5,6 @@
 echo $this->Form->create('Workout');
 
 // echo $this->Form->input('id');
-echo $this->Form->input('member_id', array("value" => "0"));
 echo $this->Form->input('date');
 echo $this->Form->input('end_date');
 echo $this->Form->input('location_name');

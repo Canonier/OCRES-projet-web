@@ -4,6 +4,12 @@ App::uses('AppModel', 'Model');
 
 class Workout extends AppModel {
 
+	public $hasMany = array(
+		'Log' => array(
+            'className' => 'Log',
+            'foreignKey' => 'workout_id',
+			)
+		);
 	
 	public function findAllId(){
 		$fetch = $this->find("all", array("fields" => array("id", "sport", "location_name", "date")));
@@ -13,6 +19,8 @@ class Workout extends AppModel {
 
 		return $workouts;
 	}
+
+
 
 
 }

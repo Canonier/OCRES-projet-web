@@ -70,12 +70,16 @@ class MembersController extends AppController {
 			$user = $this->Member->findByEmail($this->request->data['Member']['email']);
 			if(!empty($user)){
 				$to = $user['Member']['email'];
+				$pass = $this->generateRandomString(15);
+				pr($pass);
+				$user['Member']['password'] = $this->Auth->password($pass);
+				$this->Member->save($user);
 				// send email
 				$email = new CakeEmail();
 				$email->from(array('no-reply@ocres.fr' => 'OCRES Projet Web'));
 				$email->to($to);
-				$email->subject('Reset your password');
-				$email->send('You can now reset your password ');
+				$email->subject('Votre nouveau password!');
+				$email->send('Vous pouvez utiliser le password suivant : '.$pass.'. N\'oubiez pas de le changer une fois connecté!');
 				// success
 				$this->Flash->success(__('Un email de confirmation vient de vous etre envoyé.'));
 				$this->request->data = null;
@@ -83,6 +87,16 @@ class MembersController extends AppController {
 				$this->Flash->error(__('Cet email nous est inconnu.'));
 			}
 		}
+	}
+
+	public function generateRandomString($length = 10) {
+	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	    $charactersLength = strlen($characters);
+	    $randomString = '';
+	    for ($i = 0; $i < $length; $i++) {
+	        $randomString .= $characters[rand(0, $charactersLength - 1)];
+	    }
+	    return $randomString;
 	}
 
 

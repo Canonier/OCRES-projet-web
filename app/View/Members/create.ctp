@@ -10,7 +10,7 @@ echo $this->Html->link(
 echo ' ou ';
 
 echo $this->Html->link(
-    'mot de passe erdu ?',
+    'mot de passe perdu ?',
     '/members/pswlost'
 );
 

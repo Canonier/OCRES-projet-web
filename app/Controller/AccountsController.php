@@ -97,6 +97,11 @@ class AccountsController extends AppController
         }
     }
 
+    public function myworkouts(){
+        $workouts = $this->Workout->find('all', array('conditions' => array('member_id' => $this->Auth->user('id')), 'order' => array('date DESC')));
+        $this->set(compact('workouts'));
+    }
+
     public function addmember()
     {
         if ($this->request->is('post'))       
@@ -190,15 +195,13 @@ class AccountsController extends AppController
 
 // Workouts
     public function addworkout()
-    {
-        $members = $this->Member->findAllId();
-        pr($members);
-        $this->set(compact("members"));
-        
+    {   
         if ($this->request->is('post'))       
         {
+            $this->request->data['Workout']['member_id'] = $this->Auth->user('id');
             $this->Workout->save($this->request->data);
-            pr($this->request->data);
+            $this->request->data = null;
+            $this->Flash->success(__('Séance créée.'));
         }
     }
 
@@ -229,17 +232,16 @@ class AccountsController extends AppController
     }
 
 // Logs
-    public function addlog()
+    public function addlog($workout_id)
     {
-        $members = $this->Member->findAllId();
-        $this->set(compact("members"));
-        $workouts = $this->Workout->findAllId();
-        $this->set(compact("workouts"));
-        $devices = $this->Device->findAllId();
-        $this->set(compact("devices"));
+        // $devices = $this->Device->findAllId();
+        // $this->set(compact("devices"));
 
         if ($this->request->is('post'))       
         {
+            $this->request->data['Log']['member_id'] = $this->Auth->user('id');
+            $this->request->data['Log']['workout_id'] = $workout_id;
+            $this->request->data['Log']['datetime'] = date("Y-m-d H:i:s");
             $this->Log->save($this->request->data);
             pr($this->request->data);
         }

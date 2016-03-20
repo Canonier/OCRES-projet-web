@@ -1,5 +1,7 @@
-<?php 
+<?php
 
-pr($members);
+pr($log  );
+
+
 
 ?>

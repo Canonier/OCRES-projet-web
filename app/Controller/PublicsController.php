@@ -1,7 +1,7 @@
 <?php
 class PublicsController extends AppController{
 
-	public $uses = array('Member');
+	public $uses = array('Member','Log');
 
 	function beforeFilter(){
 		parent::beforeFilter();
@@ -13,8 +13,8 @@ class PublicsController extends AppController{
 	}
 
 	function ranking(){
-		$members = $this->Member->find('all');
-		$this->set(compact('members'));
+		$log = $this->Log->query("SELECT member_id, email,  AVG(log_value), log_type  FROM logs l JOIN members m on l.member_id = m.id  GROUP BY log_value ORDER BY AVG(log_value) DESC");
+		$this->set(compact('log'));
 	}
 
 	function contact(){
@@ -22,5 +22,6 @@ class PublicsController extends AppController{
 		pr($this->request->data);
 		}
 	}
+
 
 }

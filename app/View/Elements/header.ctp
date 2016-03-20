@@ -2,20 +2,20 @@
 
 <section style="opacity:0.3">
 <?= $this->Html->link('Accueil', '/'); ?> 
-<?= $this->Html->link('Mon Profil', array('controller' => 'Accounts', 'action' => 'myprofile')); ?> 
-<?= $this->Html->link('Liste (membres)', array('controller' => 'Accounts', 'action' => 'halloffame')); ?> 
-<?= $this->Html->link('Ajouter Membre', array('controller' => 'Accounts', 'action' => 'addmember')); ?> 
-<?= $this->Html->link('Ajouter Device', array('controller' => 'Accounts', 'action' => 'adddevice')); ?> 
-<?= $this->Html->link('Ajouter Workout', array('controller' => 'Accounts', 'action' => 'addworkout')); ?> 
-<?= $this->Html->link('Ajouter Log', array('controller' => 'Accounts', 'action' => 'addlog')); ?> 
-<?= $this->Html->link('Editer Membre', array('controller' => 'Accounts', 'action' => 'editmember')); ?> 
-<?= $this->Html->link('Editer Device', array('controller' => 'Accounts', 'action' => 'editdevice')); ?> 
-<?= $this->Html->link('Editer Workout', array('controller' => 'Accounts', 'action' => 'editworkout')); ?> 
-<?= $this->Html->link('Valider Device', array('controller' => 'Accounts', 'action' => 'trustdevice')); ?> 
-<?= $this->Html->link('Supprimer Membre', array('controller' => 'Accounts', 'action' => 'deletemember')); ?> 
-<?= $this->Html->link('Supprimer Device', array('controller' => 'Accounts', 'action' => 'deletedevice')); ?> 
-<?= $this->Html->link('Supprimer Workout', array('controller' => 'Accounts', 'action' => 'deleteworkout')); ?> 
-<?= $this->Html->link('Site Liste', array('controller' => 'Accounts', 'action' => 'sitelist')); ?> 
+<?= $this->Html->link('Mon Profil', array('controller' => 'accounts', 'action' => 'myprofile')); ?> 
+<?= $this->Html->link('Liste (membres)', array('controller' => 'accounts', 'action' => 'halloffame')); ?> 
+<?= $this->Html->link('Ajouter Membre', array('controller' => 'accounts', 'action' => 'addmember')); ?> 
+<?= $this->Html->link('Ajouter Device', array('controller' => 'accounts', 'action' => 'adddevice')); ?> 
+<?= $this->Html->link('Ajouter Workout', array('controller' => 'accounts', 'action' => 'addworkout')); ?> 
+<?= $this->Html->link('Ajouter Log', array('controller' => 'accounts', 'action' => 'addlog')); ?> 
+<?= $this->Html->link('Editer Membre', array('controller' => 'accounts', 'action' => 'editmember')); ?> 
+<?= $this->Html->link('Editer Device', array('controller' => 'accounts', 'action' => 'editdevice')); ?> 
+<?= $this->Html->link('Editer Workout', array('controller' => 'accounts', 'action' => 'editworkout')); ?> 
+<?= $this->Html->link('Valider Device', array('controller' => 'accounts', 'action' => 'trustdevice')); ?> 
+<?= $this->Html->link('Supprimer Membre', array('controller' => 'accounts', 'action' => 'deletemember')); ?> 
+<?= $this->Html->link('Supprimer Device', array('controller' => 'accounts', 'action' => 'deletedevice')); ?> 
+<?= $this->Html->link('Supprimer Workout', array('controller' => 'accounts', 'action' => 'deleteworkout')); ?> 
+<?= $this->Html->link('Site Liste', array('controller' => 'accounts', 'action' => 'sitelist')); ?> 
 <?= $this->Html->link('API (sans parametres)', array('controller' => 'Apis', 'action' => 'registerobject')); ?> 
 </section>
 
@@ -30,9 +30,9 @@ echo $this->Html->link('Ranking', '/ranking').' ';
 
 if($authUser){
 	// If connected
-	echo $this->Html->link('My Profil', array('controller' => 'Accounts', 'action' => 'myprofile')).' '; 
-	echo $this->Html->link('My Workouts', array('controller' => 'Accounts', 'action' => 'myworkouts')).' '; 
-	echo $this->Html->link('My Devices', array('controller' => 'Accounts', 'action' => 'mydevices')).' '; 		
+	echo $this->Html->link('My Profil', array('controller' => 'accounts', 'action' => 'myprofile')).' '; 
+	echo $this->Html->link('My Workouts', array('controller' => 'accounts', 'action' => 'myworkouts')).' '; 
+	echo $this->Html->link('My Devices', array('controller' => 'accounts', 'action' => 'mydevices')).' '; 		
 }
 
 echo $this->Html->link('Contact', '/contact').' '; 	

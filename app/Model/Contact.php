@@ -4,7 +4,7 @@ class Contact extends AppModel{
 
 	public $useTable=false; // La classe n'utilise pas de table de BDD
 
-	public function send($data){
+	public function send($d){
 
 		App::uses('CakeEmail', 'Network/Email');
 
@@ -15,8 +15,8 @@ class Contact extends AppModel{
 			 ->subject('Contact')
 			 ->emailFormat('html')
 			 ->template('contact')
-			 ->viewVars($data);
+			 ->viewVars($d);
 
-		return $mail->send('yoo');	 
+		return $mail->send();	 
 	}
 }

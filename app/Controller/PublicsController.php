@@ -1,7 +1,8 @@
 <?php
 class PublicsController extends AppController{
 
-	public $uses = array('Member');
+	
+	public $uses = array('Member','Contact');
 
 	function beforeFilter(){
 		parent::beforeFilter();
@@ -19,8 +20,12 @@ class PublicsController extends AppController{
 
 	function contact(){
 		if($this->request->is('post')){
-		pr($this->request->data);
+			if($this->Contact->send($this->rquest->data['Contact'])){
+			$this->Flash->success('Votre message a bien été envoyé');
+			$this->request->data = array();
+		} else{
+			$this->Flash->error('Un problème est survenu lors de l\'envoi du message');
 		}
-	}
-
+	 }
+    }
 }

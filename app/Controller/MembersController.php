@@ -79,7 +79,7 @@ class MembersController extends AppController {
 				$email->from(array('no-reply@ocres.fr' => 'OCRES Projet Web'));
 				$email->to($to);
 				$email->subject('Votre nouveau password!');
-				$email->send('Vous pouvez utiliser le password suivant : '.$pass.'. N\'oubiez pas de le changer une fois connecté!');
+				$email->send('Vous pouvez utiliser le password suivant : '.$pass.'. N\'oubiez pas de le changer une fois connecté !');
 				// success
 				$this->Flash->success(__('Un email de confirmation vient de vous etre envoyé.'));
 				$this->request->data = null;

@@ -34,6 +34,8 @@
 
 	Router::connect('/contact', array('controller' => 'publics', 'action' => 'contact', 'Contact'));
 
+	Router::connect('/cnil', array('controller' => 'publics', 'action' => 'cnil', 'Cnil'));
+
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

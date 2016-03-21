@@ -28,4 +28,8 @@ class PublicsController extends AppController{
 			}
 	 	}
     }
+
+    function cnil(){
+    	
+    }
 }

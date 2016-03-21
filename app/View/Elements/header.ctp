@@ -17,51 +17,63 @@
           <ul class="nav navbar-nav navbar-right">
 
 <!-- Real Menu -->
+<?php $urlHome = $this->Html->url('/'); ?>
+<?php $urlRanking = $this->Html->url('/ranking'); ?>
+<?php $urlMyProfile = $this->Html->url(array('controller' => 'accounts', 'action' => 'myprofile')); ?>
+<?php $urlMyWorkouts = $this->Html->url(array('controller' => 'accounts', 'action' => 'myworkouts')); ?>
+<?php $urlMyDevices = $this->Html->url(array('controller' => 'accounts', 'action' => 'mydevices')); ?>
+<?php $urlContact = $this->Html->url('/contact'); ?>
+<?php $urlTeam = $this->Html->url('/team'); ?>
+<?php $urlCnil = $this->Html->url('/cnil'); ?>
+<?php $urlFaq = $this->Html->url('/faq'); ?>
+<?php $urlLogin = $this->Html->url('/members/login'); ?>
+<?php $urlLogout = $this->Html->url('/members/logout'); ?>
 
-<li class="">
-	<?= $this->Html->link('Home', '/'); ?>
-</li>
-<li class="">
-	<?= $this->Html->link('Ranking', '/ranking'); ?>
+<li class="<?= $active = $this->request->here == $urlHome? 'active': false; ?>">
+	<a href="<?= $urlHome; ?>">Home</a>
 </li>
 
-<?php if($authUser){ // If connected ?>
-<li class="">
-	<?= $this->Html->link('My Profil', array('controller' => 'accounts', 'action' => 'myprofile')); ?>
+<li class="<?= $active = $this->request->here == $urlRanking? 'active': false; ?>">
+	<a href="<?= $urlRanking; ?>">Ranking</a>
 </li>
-<li class="">
-<?= $this->Html->link('My Workouts', array('controller' => 'accounts', 'action' => 'myworkouts')); ?>
+
+<?php if($authUser){ ?>
+<li class="<?= $active = $this->request->here == $urlMyProfile? 'active': false; ?>">
+	<a href="<?= $urlMyProfile; ?>">Mon Profil</a>
 </li>
-<li class="">
-<?= $this->Html->link('My Devices', array('controller' => 'accounts', 'action' => 'mydevices')); ?>
+<li class="<?= $active = $this->request->here == $urlMyWorkouts? 'active': false; ?>">
+	<a href="<?= $urlMyWorkouts; ?>">Mes Séances</a>
+</li>
+<li class="<?= $active = $this->request->here == $urlMyDevices? 'active': false; ?>">
+	<a href="<?= $urlMyDevices; ?>">Mes Objets</a>
 </li> 
 <?php } ?>
 
-<li class="dropdown active">
+<li class="dropdown <?= $active = $this->request->here == $urlContact? 'active': false; ?><?= $active = $this->request->here == $urlTeam? 'active': false; ?><?= $active = $this->request->here == $urlCnil? 'active': false; ?><?= $active = $this->request->here == $urlFaq? 'active': false; ?>">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
 		<ul class="dropdown-menu">
-			<li class="active">
-			<?= $this->Html->link('Contact', '/contact'); ?>
+			<li class="<?= $active = $this->request->here == $urlContact? 'active': false; ?>">
+				<a href="<?= $urlContact; ?>">Contact</a>
 			<li>
-			<li class="">
-			<?= $this->Html->link('Team', '/team'); ?>
+			<li class="<?= $active = $this->request->here == $urlTeam? 'active': false; ?>">
+				<a href="<?= $urlTeam; ?>">l'Équipe</a>
 			<li>
-			<li class="">
-			<?= $this->Html->link('CNIL', '/cnil'); ?>
+			<li class="<?= $active = $this->request->here == $urlCnil? 'active': false; ?>">
+				<a href="<?= $urlCnil; ?>">C.N.I.L.</a>
 			<li>
-			<li class="">
-			<?= $this->Html->link('FAQ', '/faq'); ?>
+			<li class="<?= $active = $this->request->here == $urlFaq? 'active': false; ?>">
+				<a href="<?= $urlFaq; ?>">F.A.Q.</a>
 			</li>
 		</ul>
 	</a>
 </li>
 <?php if(!$authUser){ // If unconnected ?>
-<li class="">
-<?= $this->Html->link('Sign in/up', '/members/login'); ?>
+<li class="<?= $active = $this->request->here == $urlLogin? 'active': false; ?>">
+	<a href="<?= $urlLogin; ?>">Connexion</a>
 </li>
 <?php }else{ ?>
-<li class="">
-<?= $this->Html->link('Log Out', '/members/logout'); ?>
+<li class="<?= $active = $this->request->here == $urlLogout? 'active': false; ?>">
+	<a href="<?= $urlLogout; ?>">Déconnexion</a>
 <li>
 <?php } ?>
 

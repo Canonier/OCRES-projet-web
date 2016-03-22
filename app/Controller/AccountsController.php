@@ -21,19 +21,16 @@ class AccountsController extends AppController
 
 
 // Index
-    public function index()
-    {
-    	$this->set('myname', "Toto!!!");
+    public function index(){
+
     }
 
 // Members
-    public function halloffame()
-    {
+    public function halloffame(){
         $this->set('raw', $this->Member->find('all'));
     }
 
-    public function myprofile()
-    {
+    public function myprofile(){
         $raw = $this->Member->findById($this->Auth->user('id'));
         $this->set(compact('raw'));
         if($this->request->is('post')){
@@ -102,8 +99,7 @@ class AccountsController extends AppController
         $this->set(compact('workouts'));
     }
 
-    public function addmember()
-    {
+    public function addmember(){
         if ($this->request->is('post'))       
         {
             $data = $this->request->data;
@@ -114,8 +110,7 @@ class AccountsController extends AppController
         }
     }
 
-    public function editmember($id = null)
-    {
+    public function editmember($id = null){
         
         if(empty($id)){
             throw new NotFoundException;
@@ -139,8 +134,7 @@ class AccountsController extends AppController
     }
 
 // Devices
-    public function adddevice()
-    {
+    public function adddevice(){
         $members = $this->Member->findAllId();
         $this->set(compact("members"));
 
@@ -151,8 +145,7 @@ class AccountsController extends AppController
         }
     }
 
-    public function editdevice($id = null)
-    {
+    public function editdevice($id = null){
         $members = $this->Member->findAllId();
         $this->set(compact("members"));
         
@@ -194,8 +187,7 @@ class AccountsController extends AppController
     }
 
 // Workouts
-    public function addworkout()
-    {   
+    public function addworkout(){   
         if ($this->request->is('post'))       
         {
             $this->request->data['Workout']['member_id'] = $this->Auth->user('id');
@@ -205,8 +197,7 @@ class AccountsController extends AppController
         }
     }
 
-    public function editworkout($id = null)
-    {
+    public function editworkout($id = null){
         $members = $this->Member->findAllId();
         $this->set(compact("members"));
 
@@ -232,8 +223,7 @@ class AccountsController extends AppController
     }
 
 // Logs
-    public function addlog($workout_id)
-    {
+    public function addlog($workout_id){
         // $devices = $this->Device->findAllId();
         // $this->set(compact("devices"));
 
@@ -252,8 +242,7 @@ class AccountsController extends AppController
         $this->Session->setFlash('Une action a été réalisée.');
     }
 
-    public function showTable()
-    {
+    public function showTable(){
         $members = $this->Member->find('all', array('fields' => array('id', 'email')));
         $this->set(compact('members'));
 

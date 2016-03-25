@@ -16,7 +16,6 @@ class Contact extends AppModel{
 			 ->emailFormat('html')
 			 ->template('contact')
 			 ->viewVars($d);
-
 		return $mail->send();	 
 	}
 }

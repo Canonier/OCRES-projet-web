@@ -38,6 +38,8 @@
 
 	Router::connect('/faq', array('controller' => 'publics', 'action' => 'faq', 'Faq'));
 
+	Router::connect('/team', array('controller' => 'publics', 'action' => 'team', 'Team'));
+
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

@@ -36,4 +36,8 @@ class PublicsController extends AppController{
     function faq(){
     	
     }
+
+    function team(){
+    	
+    }
 }

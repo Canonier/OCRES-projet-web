@@ -16,10 +16,32 @@ echo $this->Html->link(
 
 echo $this->Form->Create('CreateMember');
 
-echo $this->Form->input('email', array('required'));
-echo $this->Form->input('pass1', array('type' => 'password', 'label' => 'Password', 'required'));
-echo $this->Form->input('pass2', array('type' => 'password', 'label' => 'Vérifier le password', 'required'));
+echo $this->Form->input('email', array('type' => 'email', 'required',
+		'before' => '<div class="row">',
+		'between' => '<div class="col-md-9">',
+		'after' => '</div></div>',
+		'label' => array('text' => 'Email', 'class' => 'col-md-3', 'style' => 'text-align:center; padding: 5px 12px;'), 
+		'required', 'class' => 'form-control', 
+		'div' => array('class' => 'form-group')));
 
-echo $this->Form->end('New account');
+echo $this->Form->input('pass1', array('type' => 'password', 'required',
+		'before' => '<div class="row">',
+		'between' => '<div class="col-md-9">',
+		'after' => '</div></div>',
+		'label' => array('text' => 'Mot de passe', 'class' => 'col-md-3', 'style' => 'text-align:center; padding: 5px 12px;'), 
+		'required', 'class' => 'form-control', 
+		'div' => array('class' => 'form-group')));
+
+echo $this->Form->input('pass2', array('type' => 'password', 'required',
+		'before' => '<div class="row">',
+		'between' => '<div class="col-md-9">',
+		'after' => '</div></div>',
+		'label' => array('text' => 'Vérifier le mot de passe', 'class' => 'col-md-3', 'style' => 'text-align:center; padding: 5px 12px;'), 
+		'required', 'class' => 'form-control', 
+		'div' => array('class' => 'form-group')));
+
+echo $this->Form->end(array(
+		'label' => 'Créer mon compte', 'class' => 'btn btn-success',
+		'div' => array('style' => 'text-align:right;'))); 
 
 ?>

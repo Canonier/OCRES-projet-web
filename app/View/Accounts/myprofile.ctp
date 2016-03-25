@@ -6,6 +6,23 @@
 		<?= $raw['Member']['email']; ?>
 	</div>
 </div>
+<div class="col-md-8">
+    <br><h2>Inscrivez-vous...</h2>
+    <?= $this->Form->create('memberadd', array('enctype' => 'multipart/form-data')); ?>
+    <div class="form-group">
+      <label class="col-md-8"> <?php //echo $this->Form->create('memberadd', array('type' => 'file'));
+        echo $this->Form->input('email');?></label>
+    </div>
+    <div class="form-group">
+      <label class="col-md-8"> <?php echo $this->Form->input('password'); ?></label>
+    </div>
+    <div class="form-group">
+      <?php echo $this->Form->input('file_img', array('type' => 'file')); ?>
+    </div>
+    <?php echo $this->Form->end('Ajouter');?>
+</div>
+
+
 
 <div class="row">
 	<h3>Mon Avatar</h3>

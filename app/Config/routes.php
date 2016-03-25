@@ -36,6 +36,8 @@
 
 	Router::connect('/cnil', array('controller' => 'publics', 'action' => 'cnil', 'Cnil'));
 
+	Router::connect('/faq', array('controller' => 'publics', 'action' => 'faq', 'Faq'));
+
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

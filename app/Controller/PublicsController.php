@@ -30,6 +30,10 @@ class PublicsController extends AppController{
     }
 
     function cnil(){
+
+    }
+
+    function faq(){
     	
     }
 }

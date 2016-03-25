@@ -59,7 +59,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</div><!-- headerwrap -->
 	<?php } ?>
 
-	<div class="container w">
+	<div class="container w" style="margin-top:20px;margin-bottom:20px;">
 <!-- 		<div id="header">
 			<h1><?php echo $this->fetch('title'); ?></h1>
 		</div> -->

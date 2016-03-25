@@ -1,8 +1,5 @@
 <header>
 
-
-
-
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -50,7 +47,7 @@
 <?php } ?>
 
 <li class="dropdown <?= $active = $this->request->here == $urlContact? 'active': false; ?><?= $active = $this->request->here == $urlTeam? 'active': false; ?><?= $active = $this->request->here == $urlCnil? 'active': false; ?><?= $active = $this->request->here == $urlFaq? 'active': false; ?>">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span class="caret"></span></a>
 		<ul class="dropdown-menu">
 			<li class="<?= $active = $this->request->here == $urlContact? 'active': false; ?>">
 				<a href="<?= $urlContact; ?>">Contact</a>
@@ -76,8 +73,6 @@
 	<a href="<?= $urlLogout; ?>">Déconnexion</a>
 <li>
 <?php } ?>
-
-
 
           </ul>
         </div><!--/.nav-collapse -->

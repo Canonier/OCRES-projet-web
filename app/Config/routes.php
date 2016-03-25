@@ -36,11 +36,20 @@
 
 	Router::connect('/cnil', array('controller' => 'publics', 'action' => 'cnil', 'Cnil'));
 
+	Router::connect('/faq', array('controller' => 'publics', 'action' => 'faq', 'Faq'));
+
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
  */
 	CakePlugin::routes();
+
+
+/**
+ * REST 
+*/
+	Router::mapResources(array('api'));
+	Router::parseExtensions('json');
 
 /**
  * Load the CakePHP default routes. Only remove this if you do not want to use

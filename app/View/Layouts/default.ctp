@@ -27,11 +27,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php
 		echo $this->Html->meta('icon');
 
-        echo $this->Html->css('database.plugin');
+        // echo $this->Html->css('database.plugin');
 		// echo $this->Html->css('cake.generic');
 		echo $this->Html->css('bootstrap');
 		echo $this->Html->css('font-awesome.min');
 		echo $this->Html->css('main');
+		echo $this->Html->css('datatable');
+
  
 		echo $this->fetch('meta');
 		echo $this->fetch('css');

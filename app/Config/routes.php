@@ -30,7 +30,7 @@
  * ...and connect the rest of 'Pages' controller's URLs.
  */
 	// Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
-	Router::connect('/ranking', array('controller' => 'publics', 'action' => 'ranking', 'Ranking'));
+	Router::connect('/ranking', array('controller' => 'publics', 'action' => 'getRanks', 'Ranking'));
 
 	Router::connect('/contact', array('controller' => 'publics', 'action' => 'contact', 'Contact'));
 

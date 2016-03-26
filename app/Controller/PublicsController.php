@@ -9,6 +9,10 @@ class PublicsController extends AppController{
 		$this->Auth->allow();
 	}
 
+	public function home() {
+
+	}
+
 
 	function getRanks(){
 		$workouts = $this->Workout->getRanks();

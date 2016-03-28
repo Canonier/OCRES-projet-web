@@ -2,7 +2,7 @@
 class PublicsController extends AppController{
 
 	
-	public $uses = array('Member','Workout','Contact');
+	public $uses = array('Member','Workout','Contact', 'Log');
 
 	function beforeFilter(){
 		parent::beforeFilter();
@@ -16,7 +16,8 @@ class PublicsController extends AppController{
 
 	function getRanks(){
 		$workouts = $this->Workout->getRanks();
-		$this->set(compact('workouts'));
+		$types = $this->Log->find('list', array('fields' => 'log_type', 'group' => 'log_type'));
+		$this->set(compact('workouts', 'types'));
 	}
 
 	function contact(){

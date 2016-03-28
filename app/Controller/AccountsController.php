@@ -99,6 +99,7 @@ class AccountsController extends AppController
         $this->set(compact('workouts'));
     }
 
+
     public function addmember(){
         if ($this->request->is('post'))       
         {

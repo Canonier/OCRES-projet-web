@@ -22,22 +22,25 @@ class Workout extends AppModel {
 	public function getRanks (){
 
 		$workouts = $this->find("all");
-		$ordered = array();
-		foreach ($workouts as $workout){
+		$output = array('sports' => array(), 'membres' => array());
 
-			$ordered[$workout['Workout']['member_id']]['email'] = $workout['Member']['email'];
-			foreach($workout["Log"] as $log){
-				if(!isset($ordered[$workout['Workout']['member_id']]['log_average'][$log["log_type"]])) {
-					$ordered[$workout['Workout']['member_id']]['log_average'][$log["log_type"]] = $log["log_value"];
-				}else{
-					$ordered[$workout['Workout']['member_id']]['log_average'][$log["log_type"]] = ($ordered[$workout['Workout']['member_id']]['log_average'][$log["log_type"]] + $log['log_value'])/2;
+		foreach ($workouts as $workout) {
+
+			foreach ($workout['Log'] as $log) {
+				// Si le log_type à déjà une valeur, on fait la moyenne.
+				if(!empty($output['membres'][$workout['Member']['email']][$workout['Workout']['sport']][$log['log_type']])){ 
+					$output['membres'][$workout['Member']['email']][$workout['Workout']['sport']][$log['log_type']] = ( $output['membres'][$workout['Member']['email']][$workout['Workout']['sport']][$log['log_type']] + $log['log_value']) / 2;
+				}else{ // Sinon on insert la valeur.
+					$output['membres'][$workout['Member']['email']][$workout['Workout']['sport']][$log['log_type']] = $log['log_value']; 
 				}
 
+				// On enregistre le sport ailleurs
+				if(!in_array($workout['Workout']['sport'], $output['sports']))
+					$output['sports'][] = $workout['Workout']['sport'];
 			}
-
 		}
 
-		return $ordered;
+		return $output;
 	}
 
 

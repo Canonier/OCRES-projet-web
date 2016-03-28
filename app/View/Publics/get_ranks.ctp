@@ -2,41 +2,49 @@
 
 <h2 style="margin-bottom:30px;">Classement Général</h2>
 
-<table id="datatable" class="display">
+<table id="datatable" class="datatable display classement">
     <thead>
         <tr>
             <td><b>Utilisateurs</b></td>
-            <td><b>Score Moyen</b></td>
-
-<?php $proper_types = array();
-
-foreach ($types as $key => $type) { // permet d'afficher les onglets du tableau, et de corriger les index dans le tableau $types devenu $proper_types.
-    echo "<td>Score $type</td>";
-    $proper_types[] = $type;
-} ?>
-
+            <td><b>Score Total</b></td>
+            <td><?= implode("</td><td>", $workouts['sports']) ?></td>
         </tr>
 
     </thead>
     <tbody>
 
-<?php foreach ($workouts as $workout) {
-
-    if(!empty($workout["log_average"])){ ?>
-
+<?php foreach ($workouts['membres'] as $member => $sports) { ?>
         <tr>
-            <td><?= $workout['email']; ?></td>
-            <td><?= round( array_sum($workout["log_average"]) / count($proper_types), 3); ?></td>
-
-<?php
-        for ($j=0; $j < count($proper_types); $j++) { 
-            if(array_key_exists($proper_types[$j], $workout["log_average"])){ ?>
-                <td><?= $workout["log_average"][$proper_types[$j]]; ?></td>
-<?php       }else{ ?>
+            <td><?= $member; ?></td>
+            
+<?php // Gestion des sports / scores 
+        $total = array();
+        foreach ($sports as $sport => $types) {
+            $total[] = array_sum($types) / count($types);
+        }
+?>
+            <td><?= array_sum($total); ?></td>
+<?php // Gestion de l'affichage par sport
+        foreach ($workouts['sports'] as $sport) {
+            if(!empty($sports[$sport])){
+?>
+                <td><?= array_sum($sports[$sport]); ?></td>
+            <?php }else{ ?>
                 <td> -- </td>
-<?php } } ?>
+            <?php }
+        }
+    } ?>
         </tr>
-<?php } } ?>
 
     </tbody>
 </table>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('.classement').DataTable( {
+        "order": [[ 1, "desc" ]]
+    } );
+});
+
+</script>

@@ -1,6 +1,7 @@
 <?php
 //Lecture en Html de la table ordered
 
+
          			echo '<table id="datatable" class="display"><thead>';
 
                          		echo "<tr>";

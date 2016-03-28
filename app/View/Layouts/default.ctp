@@ -132,7 +132,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <script>
 
 $(document).ready( function () {
-    $('.display').DataTable();
+    $('#datatable').DataTable();
 } );
 
 </script>

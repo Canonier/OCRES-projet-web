@@ -4,8 +4,6 @@ App::uses('AppModel', 'Model');
 
 class Member extends AppModel {
 
-
-
 	public function findAllId(){
 		$fetch = $this->find("all", array("fields" => array("id", "email")));
 		foreach ($fetch as $f) {
@@ -45,8 +43,6 @@ class Member extends AppModel {
 		}
 		return $emailsList;
 	}
-
-
 
 }
 

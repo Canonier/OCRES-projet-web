@@ -163,11 +163,11 @@ class AccountsController extends AppController
         }
     }
 
-    public function editdevice($id = null){
+    public function editdevice($serial = null){
         $members = $this->Member->findAllId();
         $this->set(compact("members"));
         
-        if(empty($id)){
+        if(empty($serial)){
             throw new NotFoundException;
         }
         elseif(!empty($this->request->data)){
@@ -175,7 +175,7 @@ class AccountsController extends AppController
             $this->Device->save($this->request->data);
         }
         else{
-            $this->request->data = $this->Device->findById($id);
+            $this->request->data = $this->Device->findBySerial($serial);
 
         }
     }
@@ -196,11 +196,11 @@ class AccountsController extends AppController
         }
     }
 
-    public function deletedevice($id = null){
-        if(empty($id)){
+    public function deletedevice($serial = null){
+        if(empty($serial)){
             throw new NotFoundException;
         }else{
-            $this->Device->delete($id);
+            $this->Device->delete($serial);
         }
     }
 

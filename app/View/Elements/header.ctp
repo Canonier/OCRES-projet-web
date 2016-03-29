@@ -16,6 +16,7 @@
 <!-- Real Menu -->
 <?php $urlHome = $this->Html->url('/'); ?>
 <?php $urlRanking = $this->Html->url('/ranking'); ?>
+<?php $urlMembers = $this->Html->url('/members'); ?>
 <?php $urlMyProfile = $this->Html->url(array('controller' => 'accounts', 'action' => 'myprofile')); ?>
 <?php $urlMyWorkouts = $this->Html->url(array('controller' => 'accounts', 'action' => 'myworkouts')); ?>
 <?php $urlMyDevices = $this->Html->url(array('controller' => 'accounts', 'action' => 'mydevices')); ?>
@@ -27,14 +28,17 @@
 <?php $urlLogout = $this->Html->url('/members/logout'); ?>
 
 <li class="<?= $active = $this->request->here == $urlHome? 'active': false; ?>">
-	<a href="<?= $urlHome; ?>">Home</a>
+	<a href="<?= $urlHome; ?>">Accueil</a>
 </li>
 
 <li class="<?= $active = $this->request->here == $urlRanking? 'active': false; ?>">
-	<a href="<?= $urlRanking; ?>">Ranking</a>
+	<a href="<?= $urlRanking; ?>">Classement</a>
 </li>
 
 <?php if($authUser){ ?>
+<li class="<?= $active = $this->request->here == $urlMembers? 'active': false; ?>">
+	<a href="<?= $urlMembers; ?>">Mes Amis</a>
+</li>
 <li class="<?= $active = $this->request->here == $urlMyProfile? 'active': false; ?>">
 	<a href="<?= $urlMyProfile; ?>">Mon Profil</a>
 </li>

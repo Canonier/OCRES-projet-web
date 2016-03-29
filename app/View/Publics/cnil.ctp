@@ -4,7 +4,7 @@
 	<p>ECE Paris<br>37 Quai de Grenelle <br>75015 Paris, FRANCE</p>
 
 	<h3>Raison sociale</h3>
-	<p>SPORTADDICTS <br>Capital social : 45 000 € <br>SIRET : 501 391 072 00029 <br>APE : 6202A <br> TVA intracom. : FR 90 444 724 462</p>
+	<p>SPORTADDICTS <br>Capital social : 40 000 € <br>SIRET : 501 391 072 00029 <br>APE : 6202A <br> TVA intracom. : FR 90 444 724 462</p>
 </div>
 
 <div>

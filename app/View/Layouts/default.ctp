@@ -32,6 +32,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('bootstrap');
 		echo $this->Html->css('font-awesome.min');
 		echo $this->Html->css('main');
+		echo $this->Html->css('datatable');
+
  
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -130,7 +132,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <script>
 
 $(document).ready( function () {
-    $('#datatable').DataTable();
+    $('.display').DataTable();
 } );
 
 </script>

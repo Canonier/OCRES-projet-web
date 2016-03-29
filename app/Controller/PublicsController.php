@@ -2,20 +2,21 @@
 class PublicsController extends AppController{
 
 	
-	public $uses = array('Member','Contact');
+	public $uses = array('Member','Workout','Contact');
 
 	function beforeFilter(){
 		parent::beforeFilter();
 		$this->Auth->allow();
 	}
 
-	function home(){
+	public function home() {
 
 	}
 
-	function ranking(){
-		$members = $this->Member->find('all');
-		$this->set(compact('members'));
+
+	function getRanks(){
+		$workouts = $this->Workout->getRanks();
+		$this->set(compact('workouts', 'types'));
 	}
 
 	function contact(){
@@ -29,6 +30,7 @@ class PublicsController extends AppController{
 	 	}
     }
 
+<<<<<<< HEAD
     function cnil(){
 
     }
@@ -40,4 +42,6 @@ class PublicsController extends AppController{
     function team(){
     	
     }
+=======
+>>>>>>> origin/master
 }

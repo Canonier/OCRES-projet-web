@@ -99,6 +99,25 @@ class AccountsController extends AppController
         $this->set(compact('workouts'));
     }
 
+    public function mydevices(){
+
+        $trustedDevices = $this->Device->find('all'
+            ,array(
+                'conditions' => array('member_id' => $this->Auth->user('id'), array('trusted' => 1))
+            ,'fields' => array('serial', 'description', 'Member.email')
+            )
+        );
+        $this->set(compact('trustedDevices'));
+
+        $unTrustedDevices = $this->Device->find('all'
+            , array(
+                'conditions' => array('member_id' => $this->Auth->user('id'), array('trusted' => 0))
+            ,'fields' => array('serial', 'description', 'Member.email')
+            )
+        );
+        $this->set(compact('unTrustedDevices'));
+    }
+
     public function addmember(){
         if ($this->request->is('post'))       
         {

@@ -41,6 +41,7 @@ echo $this->Form->input('description', array(
 		'div' => array('class' => 'form-group')));
 
 echo $this->Form->input('sport', array( 
+		'options' => $sports,
 		'before' => '<div class="row">',
 		'between' => '<div class="col-md-9">',
 		'after' => '</div></div>',
@@ -49,6 +50,7 @@ echo $this->Form->input('sport', array(
 		'div' => array('class' => 'form-group')));
 
 echo $this->Form->input('contest_id', array( 
+		'options' => array(1),
 		'before' => '<div class="row">',
 		'between' => '<div class="col-md-9">',
 		'after' => '</div></div>',

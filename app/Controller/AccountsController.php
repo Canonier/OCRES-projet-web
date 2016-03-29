@@ -17,7 +17,7 @@ class AccountsController extends AppController
      */
     
     public $components = array('Session');
-    public $uses = array('Member', 'Workout', 'Device', 'Log', 'Bond');
+    public $uses = array('Member', 'Workout', 'Device', 'Log', 'Bond'); // members, workouts, devices, logs, bonds
 
 
 // Index
@@ -31,7 +31,7 @@ class AccountsController extends AppController
     }
 
     public function myprofile(){
-        $raw = $this->Member->findById($this->Auth->user('id'));
+        $raw = $this->Member->findById($this->Auth->user('id')); 
         $this->set(compact('raw'));
         if($this->request->is('post')){
             // if we change the password
@@ -180,10 +180,10 @@ class AccountsController extends AppController
         }
     }
 
-    public function trustdevice($id = null)
+    public function trustdevice($serial = null)
     {
         
-        if(empty($id)){
+        if(empty($serial)){
             throw new NotFoundException;
         }
         elseif(!empty($this->request->data)){
@@ -191,7 +191,7 @@ class AccountsController extends AppController
             $this->Device->save($this->request->data);
         }
         else{
-            $this->request->data = $this->Device->findById($id);
+            $this->request->data = $this->Device->findBySerial($serial);
 
         }
     }
@@ -206,9 +206,12 @@ class AccountsController extends AppController
 
 // Workouts
     public function addworkout(){   
+        $sports = $this->Workout->find('list', array('fields' => 'sport', 'group' => 'sport'));
+        $this->set(compact('sports'));
         if ($this->request->is('post'))       
         {
             $this->request->data['Workout']['member_id'] = $this->Auth->user('id');
+            $this->request->data['Workout']['sport'] = $sports[$this->request->data['Workout']['sport']];
             $this->Workout->save($this->request->data);
             $this->request->data = null;
             $this->Flash->success(__('Séance créée.'));
@@ -251,7 +254,8 @@ class AccountsController extends AppController
             $this->request->data['Log']['workout_id'] = $workout_id;
             $this->request->data['Log']['datetime'] = date("Y-m-d H:i:s");
             $this->Log->save($this->request->data);
-            pr($this->request->data);
+            $this->request->data = null;
+            $this->redirect(array('controller' => 'accounts', 'action' => 'myworkouts'));
         }
     }
 

@@ -1,33 +1,50 @@
 <h2>Mes Objets connectés</h2>
 
-<?= $this->Html->link('Ajouter un objet  ', array('controller' => 'accounts', 'action' => 'addDevice')) ?>
 
 <h3>Mes objets autorisés</h3>
 
 <?php
 
-echo '<table id="datatable" class="display"><thead>';
+echo '<table id="datatable" class="display trustedDevice"><thead>';
 
 echo "<tr>";
-                                 foreach ($trustedDevices[0]['Device'] as $key => $tvalue) {
-                                     echo "<td>$key</td>";
-                                 }
+                                 echo"<td>serial</td>";
+                                 echo"<td>description</td>";
                                  echo"<td>email</td>";
+                                 echo"<td>action</td>";
                          		echo "</tr>";
 
     echo "</thead><tbody>";
 
+        if(!empty($trustedDevices)){
         foreach ($trustedDevices as $trustedDevice) {
+
+
 
                 echo "<tr>";
 
+
                 echo "<td>".$trustedDevice['Device']['serial']."</td>";
                 echo "<td>".$trustedDevice['Device']['description']."</td>";
-                echo "<td>".$trustedDevice['Member']['email']."</td>";
+                echo "<td>".$trustedDevice['Member']['email']."</td>"; ?>
+                <td><a href="<?= $this->Html->url(array('controller' => 'accounts', 'action' => 'trustdevice')); ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
 
-                echo "</tr>";
 
-        }
+
+
+                   <?php  echo "</tr>";
+                   }
+
+                   }
+
+                    else{
+
+                    }
+
+
+
+
+
      echo "</tbody></table>";
 
  ?>
@@ -36,28 +53,50 @@ echo "<tr>";
 
  <?php
 
- echo '<table id="datatable" class="display"><thead>';
+ echo '<table id="datatable" class="display unTrustedDevice"><thead>';
 
  echo "<tr>";
-                                  foreach ($unTrustedDevices[0]['Device'] as $key => $tvalue) {
-                                      echo "<td>$key</td>";
-                                  }
-                                  echo"<td>email</td>";
+                                   echo"<td>serial</td>";
+                                   echo"<td>description</td>";
+                                   echo"<td>email</td>";
+                                   echo"<td>action</td>";
                           		echo "</tr>";
 
      echo "</thead><tbody>";
-
+        if(isset($unTrustedDevices)){
          foreach ($unTrustedDevices as $unTrustedDevice) {
 
                  echo "<tr>";
 
                  echo "<td>".$unTrustedDevice['Device']['serial']."</td>";
                  echo "<td>".$unTrustedDevice['Device']['description']."</td>";
-                 echo "<td>".$unTrustedDevice['Member']['email']."</td>";
+                 echo "<td>".$unTrustedDevice['Member']['email']."</td>"; ?>
+                 <td>
 
-                 echo "</tr>";
+                     <a href="<?= $this->Html->url(array('controller' => 'accounts', 'action' => 'trustdevice')); ?>"><span class="glyphicon glyphicon-ok" style="color: green" aria-hidden="true"></span></a>
+                     <a href="<?= $this->Html->url(array('controller' => 'accounts', 'action' => 'deletedevice')); ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 
+                    </td>
+
+                 <?php echo "</tr>";
+
+         }
          }
       echo "</tbody></table>";
 
   ?>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('.trustedDevice').DataTable( {
+        "columnDefs": [ {
+        "targets": 3,
+         "orderable": false,
+
+        } ]
+    } );
+});
+
+
+</script>

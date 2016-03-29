@@ -98,7 +98,6 @@ class AccountsController extends AppController
         $workouts = $this->Workout->find('all', array('conditions' => array('member_id' => $this->Auth->user('id')), 'order' => array('date DESC')));
         $this->set(compact('workouts'));
     }
-
     public function mydevices(){
 
         $trustedDevices = $this->Device->find('all'
@@ -119,7 +118,7 @@ class AccountsController extends AppController
     }
 
     public function addmember(){
-        if ($this->request->is('post'))       
+        if ($this->request->is('post'))
         {
             $data = $this->request->data;
             $data['Member']['password'] = $this->Auth->password($this->request->data['Member']['password']);

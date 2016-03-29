@@ -1,5 +1,5 @@
 <h1><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Formulaire de contact</h1>
-<p>Si vous rencontrez un problème technique ou tout simplement des questions, des commentaires, des suggestions, des remarques, des avis, des impressions, n'hésitez pas à contacter notre équipe ! Nous vous répondrons dans les plus brefs délais.</p>
+<p>Si vous rencontrez un problème technique ou tout simplement si vous avez des questions, des commentaires, des suggestions, des remarques, des avis ou des impressions à partager, n'hésitez pas à contacter notre équipe ! Nous vous répondrons dans les plus brefs délais.</p>
 
 
 <?php 

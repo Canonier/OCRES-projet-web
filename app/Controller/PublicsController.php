@@ -30,7 +30,7 @@ class PublicsController extends AppController{
 	 	}
     }
 
-<<<<<<< HEAD
+
     function cnil(){
 
     }
@@ -42,6 +42,4 @@ class PublicsController extends AppController{
     function team(){
     	
     }
-=======
->>>>>>> origin/master
 }

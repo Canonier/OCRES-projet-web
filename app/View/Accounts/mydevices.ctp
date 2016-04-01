@@ -12,7 +12,7 @@ echo "<tr>";
                                  echo"<td>description</td>";
                                  echo"<td>email</td>";
                                  echo"<td>action</td>";
-                         		echo "</tr>";
+                         		 echo "</tr>";
 
     echo "</thead><tbody>";
 
@@ -27,7 +27,7 @@ echo "<tr>";
                 echo "<td>".$trustedDevice['Device']['serial']."</td>";
                 echo "<td>".$trustedDevice['Device']['description']."</td>";
                 echo "<td>".$trustedDevice['Member']['email']."</td>"; ?>
-                <td><a href="<?= $this->Html->url(array('controller' => 'accounts', 'action' => 'trustdevice')); ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                <td><a href="<?= $this->Html->url(array('controller' => 'accounts', 'action' => 'deletedevice',$trustedDevice['Device']['serial'])); ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
 
 
 
@@ -73,8 +73,8 @@ echo "<tr>";
                  echo "<td>".$unTrustedDevice['Member']['email']."</td>"; ?>
                  <td>
 
-                     <a href="<?= $this->Html->url(array('controller' => 'accounts', 'action' => 'trustdevice')); ?>"><span class="glyphicon glyphicon-ok" style="color: green" aria-hidden="true"></span></a>
-                     <a href="<?= $this->Html->url(array('controller' => 'accounts', 'action' => 'deletedevice')); ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                     <a href="<?= $this->Html->url(array('controller' => 'accounts', 'action' => 'trustdevice', $unTrustedDevice['Device']['serial'])); ?>"><span class="glyphicon glyphicon-ok" style="color: green" aria-hidden="true"></span></a>
+                     <a href="<?= $this->Html->url(array('controller' => 'accounts', 'action' => 'deletedevice', $unTrustedDevice['Device']['serial'])); ?>"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 
                     </td>
 

@@ -16,7 +16,7 @@ class ApiController extends AppController
 	}
 
     public $components = array('RequestHandler');
-	public $uses = array('Device', 'Log', 'Workout');
+	public $uses = array('Device', 'Log', 'Workout', 'Member');
 
 	public function workoutparameters($object = null, $workout = null){
 		// default answer
@@ -67,6 +67,17 @@ class ApiController extends AppController
 		}
 		// on envoit à l'affichage
 		$this->show($code, $message);
+
+	}
+
+	public function registerdevice($email, $serial, $description){
+
+		$device = array(
+			'member_id' => $this->Member->findByEmail($email)['Member']['id'],
+			'serial' => $serial,
+			'description' => $description,
+			'trusted' => 0
+			);
 
 	}
 

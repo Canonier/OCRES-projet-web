@@ -25,6 +25,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<?php echo $this->fetch('title'); ?>
 	</title>
 	<?php
+
+
+
 		echo $this->Html->meta('icon');
 
         echo $this->Html->css('database.plugin');
@@ -33,8 +36,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('font-awesome.min');
 		echo $this->Html->css('main');
 		echo $this->Html->css('datatable');
+		echo $this->Html->css('jquery.jqplot.min');
 
- 
+
+		echo $this->Html->script('jquery.min');
+        echo $this->Html->script('jquery.jqplot.min');
+
+
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -136,3 +144,4 @@ $(document).ready( function () {
 } );
 
 </script>
+

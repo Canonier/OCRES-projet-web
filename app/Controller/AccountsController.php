@@ -183,7 +183,7 @@ class AccountsController extends AppController
     public function trustdevice($serial = null)
     {
         $device = $this->Device->findBySerial($serial);
-        
+
         if(empty($device)){
             throw new NotFoundException;
         }

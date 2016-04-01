@@ -42,4 +42,8 @@ class PublicsController extends AppController{
     function team(){
     	
     }
+
+	function jqlplot(){
+
+	}
 }

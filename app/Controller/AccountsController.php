@@ -182,25 +182,27 @@ class AccountsController extends AppController
 
     public function trustdevice($serial = null)
     {
+        $device = $this->Device->findBySerial($serial);
         
-        if(empty($serial)){
+        if(empty($device)){
             throw new NotFoundException;
         }
-        elseif(!empty($this->request->data)){
-            pr($this->request->data);
-            $this->Device->save($this->request->data);
-        }
-        else{
-            $this->request->data = $this->Device->findBySerial($serial);
+        else {
+            $device['Device']['trusted'] = 1;
+            $this->Device->save($device);
 
         }
+        $this->redirect(array('controller' => 'accounts', 'action' => 'mydevices'));
     }
 
     public function deletedevice($serial = null){
-        if(empty($serial)){
+        $id = $this->Device->findBySerial($serial);
+        if(empty($id)){
             throw new NotFoundException;
-        }else{
-            $this->Device->delete($serial);
+        }
+        else{
+
+           $this->Device->delete($id['Device']['id']);
         }
     }
 

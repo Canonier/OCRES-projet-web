@@ -71,13 +71,31 @@ class ApiController extends AppController
 	}
 
 	public function registerdevice($email, $serial, $description){
-
-		$device = array(
-			'member_id' => $this->Member->findByEmail($email)['Member']['id'],
-			'serial' => $serial,
-			'description' => $description,
-			'trusted' => 0
-			);
+		// default answer
+		$code = "500";
+		$message = "Resource not found";
+		// do stuff
+		$device = $this->Device->findBySerial($serial);
+		if(isset($device['Device']['id'])){
+			$code = "300";
+			$message = "Device allready add for an other player.";
+		}
+		elseif(!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($serial) && !empty($description)){
+			$device = array(
+				'member_id' => $this->Member->findByEmail($email)['Member']['id'],
+				'serial' => $serial,
+				'description' => $description,
+				'trusted' => 0
+				);
+			$this->Device->save($device);
+			$code = "200";
+			$message = $this->Device->find('first', array('limit' => 1, 'order' => "id DESC"));
+		}else{
+			$code = "401";
+			$message = "Missing argument, see below : ...registerdevice/email@personnal.my/serial/description";
+		}
+		// on envoit à l'affichage
+		$this->show($code, $message);
 
 	}
 

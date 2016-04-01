@@ -36,5 +36,3 @@ echo $this->Form->input('password', array('type' => 'password', 'required',
 echo $this->Form->end(array(
 		'label' => 'Se connecter', 'class' => 'btn btn-success',
 		'div' => array('style' => 'text-align:right;'))); ?>
-
-?>

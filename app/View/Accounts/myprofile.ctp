@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'Mon Profile');?>
+<?php $this->assign('title', 'Mon Profil');?>
 
 <div class="row">
 	<h3>Mon Email</h3>

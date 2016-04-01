@@ -83,7 +83,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<div id="dg">
 		<div class="container">
 			<div class="row centered">
-				<h4>LATEST WORKS</h4>
+				<h4>TESTEZ NOTRE NOUVELLE APPLICATION</h4>
 				<br>
 				<div class="col-lg-4">
 					<div class="tilt">

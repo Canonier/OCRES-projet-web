@@ -89,7 +89,7 @@ class ApiController extends AppController
 				);
 			$this->Device->save($device);
 			$code = "200";
-			$message = $this->Device->find('first', array('limit' => 1, 'order' => "id DESC"));
+			$message = $this->Device->find('first', array('limit' => 1, 'order' => "id DESC")['Device']);
 		}else{
 			$code = "401";
 			$message = "Missing argument, see below : ...registerdevice/email@personnal.my/serial/description";

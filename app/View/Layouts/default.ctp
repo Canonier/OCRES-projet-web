@@ -36,11 +36,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('font-awesome.min');
 		echo $this->Html->css('main');
 		echo $this->Html->css('datatable');
-		echo $this->Html->css('jquery.jqplot.min');
-
 
 		echo $this->Html->script('jquery.min');
-        echo $this->Html->script('jquery.jqplot.min');
+
 
 
 		echo $this->fetch('meta');
@@ -65,16 +63,18 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				</div><!-- row -->
 			</div><!-- container -->
 		</div><!-- headerwrap -->
-	<?php } ?>
+	<?php } else{ ?>
 
 	<div class="container w" style="margin-top:20px;margin-bottom:20px;">
+	<?php }?>
 <!-- 		<div id="header">
 			<h1><?php echo $this->fetch('title'); ?></h1>
 		</div> -->
 		<?php echo $this->Flash->render(); ?>
 		<?php echo $this->fetch('content'); ?>
 
-	</div>
+	<?php if(!empty($this->params->url)){ ?>
+	</div> <?php }?>
 
 
 	<?php if(empty($this->params->url)){ ?>

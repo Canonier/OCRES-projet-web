@@ -10,7 +10,9 @@ class PublicsController extends AppController{
 	}
 
 	public function home() {
-
+		$members = $this->Member->find('list',array(
+			'fields' => array('id', 'email')));
+		$this->set(compact('members'));
 	}
 
 

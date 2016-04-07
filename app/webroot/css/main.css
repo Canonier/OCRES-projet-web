@@ -414,3 +414,31 @@ a:after {
 
 
 caption{ color:white!important; }
+
+
+.row.mailmessage{
+    border:1px solid salmon;
+    border-radius: 5px;
+    position: relative;
+}
+.row.mailmessage::before{
+    content:"";
+    width:10px;
+    height: 10px;
+    border-radius: 50%;
+    border:1px solid salmon;
+    top:0; bottom:0;
+    margin:auto;
+    position: absolute;
+    left:-20px;
+}
+.row.mailmessage .message {
+    border-top: 1px salmon dashed;
+}
+.row.mailmessage .col-sm-4 {
+    background: salmon;
+    color: white;
+}
+.row.mailmessage.unread::before{
+    background-color: salmon;
+}

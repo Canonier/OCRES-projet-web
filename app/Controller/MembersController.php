@@ -4,7 +4,7 @@ App::uses('CakeEmail', 'Network/Email');
 
 class MembersController extends AppController {
 
-	public $uses = array('Member', 'Bond');
+	public $uses = array('Member', 'Bond', 'Message');
 
 	function beforeFilter(){
 		parent::beforeFilter();
@@ -122,6 +122,41 @@ class MembersController extends AppController {
 			$this->Flash->error(__('No friend yet! :\'('));
 		}
 
+
+		// MESSAGE
+
+		$messages = $this->Message->find('all', array('conditions' => array("OR" => array("member_id" => $this->Auth->user('id'), "member2_id" => $this->Auth->user('id'))), "order" => "date ASC"));
+		$this->set(compact('messages'));
+
+	}
+
+	public function message($id){
+		$message = $this->Message->findById($id);
+		// first set the read field to 1
+		if($message['Message']['read'] != 1 && $this->Auth->user('id') != $message['Member1']['id']){
+			$message['Message']['read'] = 1;
+			$this->Message->save($message);	
+		}
+		$this->set(compact("message"));
+	}
+
+	public function send($id = null, $resp = null){
+
+		if($this->request->is('post')){
+			$this->request->data['SendMessage']['member_id'] = $this->Auth->user('id');
+			$this->Message->save($this->request->data['SendMessage']);
+			$this->redirect(array('action' => 'index'));
+		}
+
+		if($id != null){
+			$members = $this->Member->find('list', array("fields" => "email", "conditions" => array("id" => $id)));
+		}else{
+			$members = $this->Member->find('list', array("fields" => "email"));
+		}
+		$title = $this->Message->find('first', array("fields" => "name", "conditions" => array("Message.id" => $resp)));
+		if(isset($title['Message'])){ $title = "RE: ".$title['Message']['name']; }else{ $title = "RE:"; }
+
+		$this->set(compact("members", "title"));
 	}
 
 	public function profil($id){

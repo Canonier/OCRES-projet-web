@@ -38,6 +38,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('datatable');
 
 		echo $this->Html->script('jquery.min');
+		echo $this->Html->script('chart.min');
 
 
 

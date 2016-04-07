@@ -190,9 +190,8 @@ class AccountsController extends AppController
         else {
             $device['Device']['trusted'] = 1;
             $this->Device->save($device);
-
+            $this->redirect(array('controller' => 'accounts', 'action' => 'mydevices'));
         }
-        $this->redirect(array('controller' => 'accounts', 'action' => 'mydevices'));
     }
 
     public function deletedevice($serial = null){
@@ -201,8 +200,8 @@ class AccountsController extends AppController
             throw new NotFoundException;
         }
         else{
-
            $this->Device->delete($id['Device']['id']);
+            $this->redirect(array('controller' => 'accounts', 'action' => 'mydevices'));
         }
     }
 
